@@ -1,0 +1,159 @@
+{
+  "brand": {
+    "name": "مَسْكَن",
+    "subtitle": "إدارة الضيافة والوحدات السكنية",
+    "city": "نواكشوط — موريتانيا"
+  },
+  "nav": {
+    "overview": "نظرة عامة",
+    "properties": "العقارات",
+    "bookings": "الحجوزات",
+    "calendar": "تقويم التوافر",
+    "financials": "العوائد المالية"
+  },
+  "actions": {
+    "newBooking": "حجز جديد",
+    "addProperty": "إضافة وحدة",
+    "approve": "اعتماد",
+    "reject": "رفض",
+    "undo": "تراجع",
+    "save": "حفظ التغييرات",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "switchLang": "Français",
+    "toggleTheme": "تبديل المظهر",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج"
+  },
+  "kpi": {
+    "totalUnits": "إجمالي الوحدات",
+    "occupancy": "معدل الإشغال",
+    "activeBookings": "الحجوزات المؤكدة",
+    "revenue": "الإيرادات المحققة",
+    "availableNow": "{{count}} متاحة حالياً",
+    "pendingCount": "{{count}} بانتظار المراجعة",
+    "unitsSplit": "{{apartments}} شقق · {{houses}} منازل"
+  },
+  "overview": {
+    "eyebrow": "نوفمبر 2026 · لوحة التحكم التنفيذية",
+    "title": "نبض الوحدات والضيافة اليوم",
+    "ganttTitle": "الخط الزمني لإشغال الوحدات",
+    "ganttSubtitle": "نظرة فورية على حجوزات الأيام السبعة القادمة",
+    "pendingTitle": "طلبات تحتاج قرارك",
+    "pendingEmpty": "لا توجد طلبات معلّقة الآن. كل الحجوزات محدثة بالكامل.",
+    "revenueTitle": "مسار العوائد الشهرية",
+    "revenueSubtitle": "مقارنة أداء الشقق والمنازل خلال 6 أشهر",
+    "unitsTitle": "حالة المحفظة السكنية",
+    "modeGrouped": "أعمدة متجاورة",
+    "modeStacked": "تراكمي",
+    "modeArea": "مساحي",
+    "periodTotal": "إجمالي الفترة",
+    "bestMonth": "أعلى شهر"
+  },
+  "properties": {
+    "title": "المحفظة العقارية",
+    "searchPlaceholder": "ابحث باسم العقار أو الحي...",
+    "allTypes": "جميع الوحدات",
+    "apartment": "شقة",
+    "house": "منزل",
+    "rooms": "{{count}} غرف",
+    "perNight": "لليلة",
+    "areaUnit": "م²",
+    "empty": "لم نعثر على وحدة مطابقة لمرشحات البحث. جرّب توسيع معايير الفلترة أو أضف وحدة جديدة."
+  },
+  "bookings": {
+    "title": "سجل الحجوزات",
+    "searchPlaceholder": "ابحث بالضيف أو رقم الحجز (BK-403)...",
+    "allStatuses": "الكل",
+    "guest": "الضيف",
+    "property": "الوحدة",
+    "dates": "الإقامة",
+    "amount": "المبلغ",
+    "status": "الحالة",
+    "decision": "الإجراء",
+    "empty": "لا توجد حجوزات ضمن هذا التصنيف حالياً. يمكنك إنشاء حجز جديد من الزر العلوي."
+  },
+  "calendar": {
+    "title": "تقويم التوافر الشهري",
+    "selectedDay": "تفاصيل يوم {{date}}",
+    "noBookingsDay": "جميع الوحدات المختارة متاحة للحجز في هذا التاريخ.",
+    "allProperties": "جميع الوحدات",
+    "legendConfirmed": "مؤكد",
+    "legendPending": "معلّق",
+    "legendAvailable": "متاح"
+  },
+  "financials": {
+    "title": "التحليل المالي وتوزيع العوائد",
+    "breakdownTitle": "الأداء المالي حسب الوحدة",
+    "bookingsCount": "{{count}} حجوزات محققة"
+  },
+  "status": {
+    "AVAILABLE": "متاح",
+    "OCCUPIED": "مشغول",
+    "MAINTENANCE": "صيانة",
+    "PENDING": "بانتظار الاعتماد",
+    "CONFIRMED": "مؤكد",
+    "COMPLETED": "مكتمل",
+    "CANCELLED": "ملغى"
+  },
+  "nights": {
+    "one": "ليلة واحدة",
+    "two": "ليلتان",
+    "few": "{{count}} ليالٍ",
+    "other": "{{count}} ليلة"
+  },
+  "toast": {
+    "approved": "تم اعتماد الحجز {{code}} بنجاح.",
+    "rejected": "تم رفض الحجز {{code}}.",
+    "undone": "تم التراجع واستعادة الحالة السابقة للحجز {{code}}.",
+    "bookingCreated": "تم تسجيل الحجز {{code}} بنجاح.",
+    "conflictError": "التواريخ المختارة تتعارض مع حجز قائم لهذه الوحدة. اختر فترة أخرى."
+  },
+  "modal": {
+    "newBookingTitle": "تسجيل حجز جديد",
+    "guestName": "اسم الضيف",
+    "guestPhone": "رقم الهاتف",
+    "property": "الوحدة السكنية",
+    "checkIn": "تاريخ الوصول",
+    "checkOut": "تاريخ المغادرة",
+    "estimatedTotal": "الإجمالي المحسوب",
+    "submitBooking": "تأكيد وتسجيل الحجز"
+  },
+  "auth": {
+    "heroTag": "الضيافة السكنية بمعايير معمارية",
+    "heroTitle": "إدارة وحداتك وحجوزاتك من مكان واحد بوضوح وثقة.",
+    "heroDesc": "منصة متكاملة ثنائية اللغة لملاك العقارات ومديري الضيافة، مع حماية فورية ضد تضارب الحجوزات وتحليلات عوائد لحظية.",
+    "tabLogin": "تسجيل الدخول",
+    "tabRegister": "إنشاء حساب جديد",
+    "loginSubtitle": "ادخل إلى لوحة إدارة مَسْكَن بكلمة المرور أو برمز تحقق فوري.",
+    "registerSubtitle": "أنشئ حسابك وأكّد هويتك برمز OTP عبر هاتفك حسب بلدك أو بريدك الإلكتروني.",
+    "methodPassword": "بكلمة المرور",
+    "methodOtp": "برمز تحقق OTP",
+    "fullName": "الاسم الكامل",
+    "fullNamePlaceholder": "مثال: محمد ولد عبد الله",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "name@maskan.mr",
+    "country": "البلد ورمز الاتصال",
+    "phone": "رقم الهاتف",
+    "password": "كلمة المرور",
+    "passwordHint": "8 أحرف على الأقل",
+    "verifyVia": "استلام رمز التحقق (OTP) عبر:",
+    "channelSms": "رسالة SMS إلى الهاتف",
+    "channelEmail": "البريد الإلكتروني",
+    "sendOtp": "إرسال رمز التحقق",
+    "loginSubmit": "دخول إلى المنصة",
+    "verifyAndCreate": "تأكيد الرمز وإنشاء الحساب",
+    "verifyAndLogin": "تأكيد الرمز والدخول",
+    "otpSentTo": "أرسلنا رمزاً مكوناً من 6 أرقام إلى",
+    "changeDetails": "تعديل البيانات",
+    "resendIn": "إعادة الإرسال خلال {{seconds}} ثانية",
+    "resendNow": "إعادة إرسال الرمز",
+    "demoPreviewCode": "وضع المعاينة المحلية — رمز OTP التجريبي:",
+    "quickDemo": "الدخول السريع بحساب تجريبي",
+    "errorRequired": "يرجى استكمال الحقول المطلوبة بشكل صحيح.",
+    "errorPasswordShort": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+    "errorOtpInvalid": "رمز التحقق غير صحيح. تأكد من الأرقام الستة وحاول مجدداً.",
+    "errorCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+  }
+}

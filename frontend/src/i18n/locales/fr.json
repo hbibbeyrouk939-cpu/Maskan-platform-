@@ -1,0 +1,157 @@
+{
+  "brand": {
+    "name": "Maskan",
+    "subtitle": "Gestion résidentielle & hospitalité",
+    "city": "Nouakchott — Mauritanie"
+  },
+  "nav": {
+    "overview": "Vue d'ensemble",
+    "properties": "Propriétés",
+    "bookings": "Réservations",
+    "calendar": "Calendrier",
+    "financials": "Finances"
+  },
+  "actions": {
+    "newBooking": "Nouvelle réservation",
+    "addProperty": "Ajouter un bien",
+    "approve": "Approuver",
+    "reject": "Refuser",
+    "undo": "Annuler",
+    "save": "Enregistrer",
+    "cancel": "Fermer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "switchLang": "العربية",
+    "toggleTheme": "Changer le thème",
+    "signIn": "Connexion",
+    "signOut": "Déconnexion"
+  },
+  "kpi": {
+    "totalUnits": "Total des biens",
+    "occupancy": "Taux d'occupation",
+    "activeBookings": "Séjours confirmés",
+    "revenue": "Revenus réalisés",
+    "availableNow": "{{count}} disponibles",
+    "pendingCount": "{{count}} en attente",
+    "unitsSplit": "{{apartments}} apparts · {{houses}} villas"
+  },
+  "overview": {
+    "eyebrow": "Novembre 2026 · Pilotage exécutif",
+    "title": "Rythme d'occupation & hospitalité",
+    "ganttTitle": "Chronologie des résidences",
+    "ganttSubtitle": "Aperçu en temps réel sur les 7 prochains jours",
+    "pendingTitle": "Demandes à valider",
+    "pendingEmpty": "Aucune demande en attente. Toutes les réservations sont à jour.",
+    "revenueTitle": "Trajectoire des revenus",
+    "revenueSubtitle": "Comparaison appartements vs villas sur 6 mois",
+    "unitsTitle": "État du portefeuille",
+    "modeGrouped": "Groupé",
+    "modeStacked": "Empilé",
+    "modeArea": "Courbe",
+    "periodTotal": "Total période",
+    "bestMonth": "Meilleur mois"
+  },
+  "properties": {
+    "title": "Portefeuille résidentiel",
+    "searchPlaceholder": "Rechercher par nom ou quartier...",
+    "allTypes": "Tous les biens",
+    "apartment": "Appartement",
+    "house": "Villa / Maison",
+    "rooms": "{{count}} pièces",
+    "perNight": "/ nuit",
+    "areaUnit": "m²",
+    "empty": "Aucun bien ne correspond à vos filtres. Ajustez la recherche ou ajoutez une résidence."
+  },
+  "bookings": {
+    "title": "Registre des réservations",
+    "searchPlaceholder": "Rechercher par client ou code (BK-403)...",
+    "allStatuses": "Toutes",
+    "guest": "Client",
+    "property": "Résidence",
+    "dates": "Séjour",
+    "amount": "Montant",
+    "status": "Statut",
+    "decision": "Décision",
+    "empty": "Aucune réservation dans cette catégorie. Créez une nouvelle réservation ci-dessus."
+  },
+  "calendar": {
+    "title": "Calendrier de disponibilité",
+    "selectedDay": "Détails du {{date}}",
+    "noBookingsDay": "Toutes les unités sélectionnées sont libres à cette date.",
+    "allProperties": "Toutes les résidences",
+    "legendConfirmed": "Confirmée",
+    "legendPending": "En attente",
+    "legendAvailable": "Libre"
+  },
+  "financials": {
+    "title": "Performance financière & répartition",
+    "breakdownTitle": "Revenus par résidence",
+    "bookingsCount": "{{count}} séjours comptabilisés"
+  },
+  "status": {
+    "AVAILABLE": "Disponible",
+    "OCCUPIED": "Occupé",
+    "MAINTENANCE": "Maintenance",
+    "PENDING": "En attente",
+    "CONFIRMED": "Confirmée",
+    "COMPLETED": "Terminée",
+    "CANCELLED": "Annulée"
+  },
+  "nights": {
+    "one": "1 nuit",
+    "other": "{{count}} nuits"
+  },
+  "toast": {
+    "approved": "Réservation {{code}} approuvée.",
+    "rejected": "Réservation {{code}} refusée.",
+    "undone": "Statut précédent restauré pour {{code}}.",
+    "bookingCreated": "Réservation {{code}} enregistrée.",
+    "conflictError": "Ces dates chevauchent une réservation existante pour ce bien. Choisissez une autre période."
+  },
+  "modal": {
+    "newBookingTitle": "Nouvelle réservation",
+    "guestName": "Nom du client",
+    "guestPhone": "Téléphone",
+    "property": "Résidence",
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "estimatedTotal": "Total estimé",
+    "submitBooking": "Confirmer la réservation"
+  },
+  "auth": {
+    "heroTag": "Hospitalité résidentielle d'architecture",
+    "heroTitle": "Pilotez vos résidences et réservations avec précision.",
+    "heroDesc": "Une plateforme bilingue pensée pour les propriétaires et conciergeries : zéro double réservation et suivi financier en temps réel.",
+    "tabLogin": "Connexion",
+    "tabRegister": "Créer un compte",
+    "loginSubtitle": "Accédez à votre espace Maskan par mot de passe ou code OTP.",
+    "registerSubtitle": "Créez votre compte et vérifiez-le par OTP sur votre téléphone ou par e-mail.",
+    "methodPassword": "Mot de passe",
+    "methodOtp": "Code OTP",
+    "fullName": "Nom complet",
+    "fullNamePlaceholder": "Ex. Amélie Diallo",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "nom@maskan.mr",
+    "country": "Pays et indicatif",
+    "phone": "Numéro de téléphone",
+    "password": "Mot de passe",
+    "passwordHint": "8 caractères minimum",
+    "verifyVia": "Recevoir le code OTP par :",
+    "channelSms": "SMS sur téléphone",
+    "channelEmail": "Adresse e-mail",
+    "sendOtp": "Envoyer le code OTP",
+    "loginSubmit": "Se connecter",
+    "verifyAndCreate": "Vérifier et créer le compte",
+    "verifyAndLogin": "Vérifier et se connecter",
+    "otpSentTo": "Nous avons envoyé un code à 6 chiffres à",
+    "changeDetails": "Modifier les informations",
+    "resendIn": "Renvoyer dans {{seconds}} s",
+    "resendNow": "Renvoyer le code",
+    "demoPreviewCode": "Mode aperçu local — code OTP de test :",
+    "quickDemo": "Accès rapide en mode démo",
+    "errorRequired": "Veuillez renseigner tous les champs obligatoires.",
+    "errorPasswordShort": "Le mot de passe doit contenir au moins 8 caractères.",
+    "errorOtpInvalid": "Code de vérification invalide. Vérifiez les 6 chiffres.",
+    "errorCredentials": "Adresse e-mail ou mot de passe incorrect."
+  }
+}

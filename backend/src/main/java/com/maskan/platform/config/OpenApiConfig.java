@@ -1,0 +1,31 @@
+package com.maskan.platform.config;
+
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class OpenApiConfig {
+    @Bean
+    public OpenAPI maskanOpenAPI() {
+        final String schemeName = "bearerAuth";
+        return new OpenAPI()
+            .info(new Info()
+                .title("Maskan | مَسْكَن Platform API")
+                .version("1.0.0")
+                .description("Bilingual (AR/FR) Residential Hospitality & Booking Management API with DB-level overlap prevention.")
+                .contact(new Contact().name("Maskan Engineering").email("engineering@maskan.mr")))
+            .addSecurityItem(new SecurityRequirement().addList(schemeName))
+            .components(new Components().addSecuritySchemes(schemeName,
+                new SecurityScheme()
+                    .name(schemeName)
+                    .type(SecurityScheme.Type.HTTP)
+                    .scheme("bearer")
+                    .bearerFormat("JWT")));
+    }
+}

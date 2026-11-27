@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: false
+  flyway:
+    validate-on-migrate: true
+
+logging:
+  level:
+    root: INFO
+    com.maskan.platform: INFO

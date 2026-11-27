@@ -1,0 +1,66 @@
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+spring:
+  application:
+    name: maskan-backend
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/maskan_db}
+    username: ${DATABASE_USER:maskan}
+    password: ${DATABASE_PASSWORD:maskan_secret_dev}
+    hikari:
+      maximum-pool-size: 15
+      minimum-idle: 5
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+
+maskan:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:bWFza2FuLXN1cGVyLXNlY3VyZS1qd3Qtc2VjcmV0LWtleS0yMDI2LWNoYW5nZS1pbi1wcm9k}
+      access-expiration-ms: ${JWT_ACCESS_EXP_MS:900000}
+      refresh-expiration-ms: ${JWT_REFRESH_EXP_MS:604800000}
+    cors:
+      allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+  otp:
+    provider: ${OTP_PROVIDER:log}
+    ttl-seconds: ${OTP_TTL_SECONDS:300}
+    cooldown-seconds: ${OTP_COOLDOWN_SECONDS:45}
+    max-attempts: ${OTP_MAX_ATTEMPTS:5}
+    expose-dev-code: ${OTP_EXPOSE_DEV_CODE:false}
+  seed:
+    sync-demo-passwords: ${MASKAN_SYNC_DEMO_PASSWORDS:true}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
