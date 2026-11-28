@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Check, X, ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { BookingItem, CurrencyCode, LangCode, MonthlyRevenuePoint, PropertyItem, ThemeMode } from '../../types/domain';
@@ -18,6 +19,12 @@ interface Props {
 
 const GANTT_DAYS = ['2026-11-25', '2026-11-26', '2026-11-27', '2026-11-28', '2026-11-29', '2026-11-30', '2026-12-01'];
 
+function formatWeekdayShort(isoDate: string, lang: LangCode): string {
+  const date = new Date(`${isoDate}T00:00:00`);
+  const locale = lang === 'ar' ? 'ar-EG' : 'fr-FR';
+  return new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(date);
+}
+
 export function OverviewView({
   properties,
   bookings,
@@ -30,6 +37,7 @@ export function OverviewView({
   onNewBooking,
 }: Props) {
   const { t } = useTranslation();
+  const [selectedDay, setSelectedDay] = useState<string>(GANTT_DAYS[1]);
 
   const apartments = properties.filter((p) => p.type === 'APARTMENT').length;
   const houses = properties.filter((p) => p.type === 'HOUSE').length;
@@ -43,9 +51,9 @@ export function OverviewView({
     .reduce((sum, b) => sum + b.totalUsd, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
       <header data-reveal className="flex flex-wrap items-end justify-between gap-4">
-        <div>
+        <div className="min-w-0">
           <p className="text-xs font-medium text-ink-muted">{t('overview.eyebrow')}</p>
           <h1 className="font-editorial mt-1 text-ink" style={{ fontSize: 'var(--text-hero)', lineHeight: 1.15 }}>
             {t('overview.title')}
@@ -63,30 +71,30 @@ export function OverviewView({
 
       {/* KPI Strip */}
       <section data-reveal className="kpi-strip">
-        <article className="arch-panel rounded-xl p-4 sm:p-5">
+        <article className="arch-panel min-w-0 rounded-xl p-4 sm:p-5">
           <p className="text-xs text-ink-muted">{t('kpi.totalUnits')}</p>
           <p className="mt-2 font-semibold text-ink tabular-nums" style={{ fontSize: 'var(--text-kpi)' }}>
             {properties.length}
           </p>
           <p className="mt-1 text-xs text-ink-muted">{t('kpi.unitsSplit', { apartments, houses })}</p>
         </article>
-        <article className="arch-panel rounded-xl p-4 sm:p-5">
+        <article className="arch-panel min-w-0 rounded-xl p-4 sm:p-5">
           <p className="text-xs text-ink-muted">{t('kpi.occupancy')}</p>
           <p className="mt-2 font-semibold text-emeraldArch tabular-nums" style={{ fontSize: 'var(--text-kpi)' }}>
             <bdi dir="ltr">{occupancyPct}%</bdi>
           </p>
           <p className="mt-1 text-xs text-ink-muted">{t('kpi.availableNow', { count: availableNow })}</p>
         </article>
-        <article className="arch-panel rounded-xl p-4 sm:p-5">
+        <article className="arch-panel min-w-0 rounded-xl p-4 sm:p-5">
           <p className="text-xs text-ink-muted">{t('kpi.activeBookings')}</p>
           <p className="mt-2 font-semibold text-ink tabular-nums" style={{ fontSize: 'var(--text-kpi)' }}>
             {activeBookings}
           </p>
           <p className="mt-1 text-xs text-brass">{t('kpi.pendingCount', { count: pendingBookings.length })}</p>
         </article>
-        <article className="arch-panel rounded-xl p-4 sm:p-5">
+        <article className="arch-panel min-w-0 rounded-xl p-4 sm:p-5">
           <p className="text-xs text-ink-muted">{t('kpi.revenue')}</p>
-          <p className="mt-2 font-semibold text-ink tabular-nums" style={{ fontSize: 'var(--text-kpi)' }}>
+          <p className="mt-2 truncate font-semibold text-ink tabular-nums" style={{ fontSize: 'var(--text-kpi)' }}>
             <bdi>{formatMoney(realizedRevenueUsd, currency, lang)}</bdi>
           </p>
           <p className="mt-1 text-xs text-emeraldArch">+12.4%</p>
@@ -95,8 +103,8 @@ export function OverviewView({
 
       {/* Asymmetric Editorial Bento */}
       <div className="overview-bento">
-        {/* Visual Hero: Unit Occupancy Timeline */}
-        <section data-reveal className="area-hero arch-panel-hero rounded-xl p-5 sm:p-6">
+        {/* Visual Hero: Mobile Day-Strip Navigator + Desktop Gantt Timeline */}
+        <section data-reveal className="area-hero min-w-0 arch-panel-hero rounded-xl p-5 sm:p-6">
           <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-hairline pb-4">
             <div>
               <h2 className="font-editorial text-xl text-ink">{t('overview.ganttTitle')}</h2>
@@ -114,7 +122,97 @@ export function OverviewView({
             </div>
           </div>
 
-          <div className="mt-4 overflow-x-auto">
+          {/* Mobile Interactive Day Strip Navigator */}
+          <div className="mt-4 md:hidden">
+            <div className="flex gap-2 overflow-x-auto pb-2" role="tablist">
+              {GANTT_DAYS.map((day) => {
+                const active = selectedDay === day;
+                const dayNum = day.slice(-2);
+                const hasConfirmed = bookings.some(
+                  (b) => b.status === 'CONFIRMED' && day >= b.checkIn && day < b.checkOut,
+                );
+                const hasPending = bookings.some(
+                  (b) => b.status === 'PENDING' && day >= b.checkIn && day < b.checkOut,
+                );
+                return (
+                  <button
+                    key={day}
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() => setSelectedDay(day)}
+                    className={`flex min-w-[58px] shrink-0 flex-col items-center gap-1 rounded-xl border px-2.5 py-2 transition-colors ${
+                      active
+                        ? 'border-emeraldArch bg-emeraldArch text-canvas'
+                        : 'border-hairline bg-canvas/70 text-ink hover:border-strong'
+                    }`}
+                  >
+                    <span className={`text-[11px] ${active ? 'opacity-90' : 'text-ink-muted'}`}>
+                      {formatWeekdayShort(day, lang)}
+                    </span>
+                    <span className="text-sm font-semibold tabular-nums">{dayNum}</span>
+                    <span className="flex h-1.5 items-center gap-1">
+                      {hasConfirmed && (
+                        <span className={`h-1.5 w-1.5 rounded-full ${active ? 'bg-canvas' : 'bg-emeraldArch'}`} />
+                      )}
+                      {hasPending && (
+                        <span className={`h-1.5 w-1.5 rounded-full ${active ? 'bg-canvas/75' : 'bg-brass'}`} />
+                      )}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <ul className="mt-3 space-y-2.5">
+              {properties.map((prop) => {
+                const match = bookings.find(
+                  (b) =>
+                    b.propertyId === prop.id &&
+                    (b.status === 'CONFIRMED' || b.status === 'PENDING') &&
+                    selectedDay >= b.checkIn &&
+                    selectedDay < b.checkOut,
+                );
+                return (
+                  <li
+                    key={prop.id}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-hairline bg-canvas/60 p-3"
+                  >
+                    <div className="flex min-w-0 items-center gap-3">
+                      <img
+                        src={prop.imageUrl}
+                        alt={lang === 'ar' ? prop.nameAr : prop.nameFr}
+                        loading="lazy"
+                        className="h-11 w-14 shrink-0 rounded-lg object-cover aspect-[1200/896]"
+                      />
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-semibold text-ink">
+                          {lang === 'ar' ? prop.nameAr : prop.nameFr}
+                        </p>
+                        <p className="text-xs text-ink-muted tabular-nums">
+                          {match ? match.guestName : formatMoney(prop.pricePerNightUsd, currency, lang)}
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                        match?.status === 'CONFIRMED'
+                          ? 'bg-emeraldArch-soft text-emeraldArch'
+                          : match?.status === 'PENDING'
+                            ? 'bg-brass-soft text-brass'
+                            : 'bg-sunken text-ink-muted'
+                      }`}
+                    >
+                      {match ? t(`status.${match.status}`) : t('calendar.legendAvailable')}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Desktop Full 7-Day Gantt Timeline */}
+          <div className="mt-4 hidden md:block overflow-x-auto">
             <div className="min-w-[540px] space-y-3">
               <div className="grid grid-cols-8 gap-2 text-xs text-ink-muted">
                 <div className="col-span-2" />
@@ -156,7 +254,7 @@ export function OverviewView({
                         return (
                           <div
                             key={day}
-                            className={`h-8 rounded-md flex items-center justify-center text-[11px] font-medium ${
+                            className={`flex h-8 items-center justify-center rounded-md text-[11px] font-medium ${
                               covered ? barTone : 'bg-sunken/70'
                             }`}
                           >
@@ -175,7 +273,7 @@ export function OverviewView({
         </section>
 
         {/* Pending Decisions Queue */}
-        <section data-reveal className="area-queue arch-panel rounded-xl p-5 sm:p-6">
+        <section data-reveal className="area-queue min-w-0 arch-panel rounded-xl p-5 sm:p-6">
           <div className="flex items-center justify-between border-b border-hairline pb-4">
             <h2 className="font-editorial text-xl text-ink">{t('overview.pendingTitle')}</h2>
             <span className="rounded-full bg-brass-soft px-2.5 py-0.5 text-xs font-semibold text-brass tabular-nums">
@@ -190,13 +288,13 @@ export function OverviewView({
               {pendingBookings.map((b) => (
                 <li key={b.id} className="rounded-lg border border-hairline bg-canvas/60 p-3.5">
                   <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <p className="text-sm font-semibold text-ink">{b.guestName}</p>
-                      <p className="text-xs text-ink-muted">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-ink">{b.guestName}</p>
+                      <p className="truncate text-xs text-ink-muted">
                         {lang === 'ar' ? b.propertyNameAr : b.propertyNameFr}
                       </p>
                     </div>
-                    <bdi dir="ltr" className="text-xs font-medium text-ink-muted tabular-nums">
+                    <bdi dir="ltr" className="shrink-0 text-xs font-medium text-ink-muted tabular-nums">
                       {b.bookingCode}
                     </bdi>
                   </div>
@@ -233,11 +331,11 @@ export function OverviewView({
           )}
         </section>
 
-        {/* Revenue Analytics Chart */}
+        {/* Curved Area Revenue Chart */}
         <RevenueChart points={monthlyPoints} currency={currency} lang={lang} theme={theme} />
 
         {/* Portfolio Snapshot */}
-        <section data-reveal className="area-units arch-panel rounded-xl p-5 sm:p-6">
+        <section data-reveal className="area-units min-w-0 arch-panel rounded-xl p-5 sm:p-6">
           <h2 className="font-editorial border-b border-hairline pb-4 text-xl text-ink">
             {t('overview.unitsTitle')}
           </h2>
